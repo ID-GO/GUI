@@ -1,0 +1,177 @@
+﻿<Window x:Class="GUI.View.Mainpage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:connection="clr-namespace:GUI.ViewModel"
+        xmlns:view="clr-namespace:GUI.View"
+        mc:Ignorable="d" Height="768" Width="1024" Background="Transparent" Loaded="Window_Loaded">
+
+    <Grid Background="#FF245D83">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.08*" />
+            <RowDefinition Height="0.8*" />
+            <RowDefinition Height="0.08*" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.1*" />
+                <ColumnDefinition Width="2.5*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1.5*" />
+                <ColumnDefinition Width="0.1*" />
+            </Grid.ColumnDefinitions>
+            <Grid  Grid.Column="1">
+                <Grid HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="122" Margin="10,7,0,0">
+                    <materialDesign:Card materialDesign:ShadowAssist.ShadowDepth="Depth4"  Background="#FFAEEA00"  VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="116" Content="" Margin="0,-1,0,1"/>
+                    <Menu IsMainMenu="True" DockPanel.Dock="Top" Background="#FF13537E" materialDesign:ShadowAssist.ShadowDepth="Depth3" BorderBrush="#FF090707" Margin="-1,0,6,6">
+                        <MenuItem Header="_File" materialDesign:ShadowAssist.ShadowDepth="Depth3" Foreground="#DDFFFFFF" BorderBrush="#FF161616" Height="30" Background="#FF1D4461">
+                            <MenuItem Header="Save">
+                                <MenuItem.Icon>
+                                    <materialDesign:PackIcon Kind="ContentSave" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="Save As.." />
+                            <MenuItem Header="Exit" InputGestureText="Ctrl+E">
+                                <MenuItem.Icon>
+                                    <materialDesign:PackIcon Kind="ExitToApp" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <Separator />
+                            <MenuItem Header="Excellent" IsCheckable="True" IsChecked="True" />
+                            <MenuItem Header="Rubbish" IsCheckable="True" />
+                            <MenuItem Header="Dig Deeper" InputGestureText="Ctrl+D">
+                                <MenuItem Header="Enlightenment?" IsCheckable="True" />
+                                <MenuItem Header="Disappointment" IsCheckable="True" />
+                            </MenuItem>
+                            <MenuItem Header="Look Deeper" InputGestureText="Ctrl+D">
+                                <MenuItem Header="Plain" />
+                                <MenuItem Header="Ice Cream" />
+                            </MenuItem>
+                        </MenuItem>
+                        <MenuItem Header="_Edit" materialDesign:ShadowAssist.ShadowDepth="Depth3" Foreground="#DDFFFFFF" OpacityMask="#FFE4E4E4" BorderBrush="Black" Height="30" Background="#FF1D4461">
+                            <MenuItem Header="_Cut" Command="Cut">
+                                <MenuItem.Icon>
+                                    <materialDesign:PackIcon Kind="ContentCut" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="_Copy" Command="Copy">
+                                <MenuItem.Icon>
+                                    <materialDesign:PackIcon Kind="ContentCopy" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem Header="_Paste" Command="Paste">
+                                <MenuItem.Icon>
+                                    <materialDesign:PackIcon Kind="ContentPaste" />
+                                </MenuItem.Icon>
+                            </MenuItem>
+                        </MenuItem>
+                    </Menu>
+
+                </Grid>
+            </Grid>
+            <Grid  Grid.Column="8" Margin="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                <materialDesign:Card   Background="#FF2B576B"
+                                 Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                                 Padding="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <Grid>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="0.3*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock  Grid.Row="0"  Style="{StaticResource MaterialDesignHeadlineTextBlock}" FontSize="18" FontFamily="Segoe UI Semibold"  Foreground="#FFBEFF00" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock.Triggers>
+                                <EventTrigger  RoutedEvent="FrameworkElement.Loaded">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.Opacity)"
+                                                         From="1" To="0" AutoReverse="True"
+                                                         BeginTime="0:0:0" Duration="0:0:.99999" RepeatBehavior="Forever"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </TextBlock.Triggers><Run Text="HCL"/></TextBlock>
+
+                        <Separator Grid.Row="1" Style="{StaticResource MaterialDesignLightSeparator}"  Background="#1FFFFFFF" Height="Auto"/>
+                        <TextBlock  Grid.Row="2"   Text="{Binding Date, StringFormat=\{0:d\}}"  VerticalAlignment="Top"  Style="{StaticResource MaterialDesignBody2TextBlock}"  Foreground="White" HorizontalAlignment="Center" FontSize="14"/>
+
+                    </Grid>
+                </materialDesign:Card>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.9*" />
+                <ColumnDefinition Width="0.02*" />
+                <ColumnDefinition Width="10*" />
+            </Grid.ColumnDefinitions>
+
+
+            <Grid Grid.Row="0" Grid.Column="0" Background="#FF2D3446"  >
+                <Canvas>
+                    <StackPanel Panel.ZIndex="2" Style="{StaticResource SpSlideLeft}" x:Name="SpLeft" Background="#2D3446" Width="200" Margin="-150,0,0,0">
+                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Width="200">
+                            <Label  Style="{DynamicResource MenuLabel}" Width="140" Content="Anasayfa" VerticalAlignment="Center" FontFamily="Segoe UI Semibold">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseLeftButtonDown" >
+                                        <i:InvokeCommandAction Command="{Binding LeftMouseButtonDown}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+
+                            </Label>
+                            <Image Source="/GUI;component/images/icons/home.png" Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="14,10,10,10" />
+                        </DockPanel>
+                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Width="200" >
+                            <Label Style="{DynamicResource MenuLabel}" Content="Veri Kayıt" Width="140" VerticalAlignment="Center" FontFamily="Source Sans Pro">
+                                <Label.InputBindings>
+                                    <MouseBinding Command="{Binding Command}" MouseAction="LeftClick" />
+                                </Label.InputBindings>
+
+
+                            </Label>
+                            <Image Source="/GUI;component/images/icons/document.png" Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="14,10,10,10" />
+                        </DockPanel>
+                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Width="200" >
+                            <Label Style="{DynamicResource MenuLabel}" Content="İstatistik" Width="140" VerticalAlignment="Center" FontFamily="Source Sans Pro"/>
+                            <Image Source="../images/icons/progress.png" Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="14,10,10,10" />
+                        </DockPanel>
+                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Width="200" >
+                            <StackPanel>
+                                <Label Style="{DynamicResource MenuLabel}" Content="Email" Width="140" VerticalAlignment="Center" FontFamily="Source Sans Pro"/>
+                                <Label Style="{DynamicResource MenuDecLabel}" Content="Posta Kutun Boş" FontSize="12" Width="140" VerticalAlignment="Center" FontFamily="Source Sans Pro" FontStyle="Italic"/>
+                            </StackPanel>
+                            <Image Source="../images/icons/file.png" Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="14,10,10,10" />
+                        </DockPanel>
+                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Right" Width="200" >
+                            <Label Style="{DynamicResource MenuLabel}" Content="Ayarlar" Width="140" VerticalAlignment="Center" FontFamily="Source Sans Pro"/>
+                            <Image Source="../images/icons/settings.png" Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="14,10,10,10" />
+                        </DockPanel>
+                    </StackPanel>
+                </Canvas>
+            </Grid>
+            <Grid Grid.Column="1" Background="#FFE60000"></Grid>
+            <Grid Grid.Column="2">
+                <DataGrid Background="White"/>
+
+
+
+            </Grid>
+        </Grid>
+
+    </Grid>
+</Window>
+
+
+
