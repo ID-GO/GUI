@@ -20,10 +20,7 @@ namespace GUI.Model
             Model = data;
         }
 
-        public ExportToExcel()
-        {
-           
-        }
+     
 
 
         public async Task Exportdatagrid()
